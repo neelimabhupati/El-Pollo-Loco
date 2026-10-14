@@ -4,7 +4,9 @@ let ctx;
 
 function init(){
 canvas = document.getElementById("Canvas");
-character.src = "../images/2_character_pepe/2_walk/W-21.png";
-ctx = canvas.getContext("2d")
+ctx = canvas.getContext("2d");
 
+character.src = "../images/2_character_pepe/2_walk/W-21.png";
+
+ctx.drawImage(character, 20, 20, 50, 150);
 }
