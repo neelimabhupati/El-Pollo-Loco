@@ -4,6 +4,7 @@ class MovableObject {
     image;
     height = 150;
     width = 100;
+    speed = 0.15;
     imageCache = {};
     currentImageIndex = 0;
 
@@ -24,6 +25,11 @@ class MovableObject {
         console.log("Moving right");
     }
 
-    moveLeft() { }
+    moveLeft() {
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 1000 / 60); // Move the cloud left every 1/60th of a second 
+
+    }
 
 }
