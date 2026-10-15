@@ -7,7 +7,10 @@ class World {
         new Chicken()
     ];
     backgroundObjects = [
-        new BackgroundObject('./images/5_background/layers/3_third_layer/1.png', 0)
+        new BackgroundObject('./images/5_background/layers/air.png', 0),
+        new BackgroundObject('./images/5_background/layers/3_third_layer/1.png',0),
+        new BackgroundObject('./images/5_background/layers/2_second_layer/1.png',0),
+        new BackgroundObject('./images/5_background/layers/1_first_layer/1.png',0)
     ];
     clouds = [new Cloud()];
     canvas;
@@ -21,10 +24,10 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.addObjecttoMaop(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjecttoMaop(this.enemies);
         this.addObjecttoMaop(this.clouds);
-        this.addObjecttoMaop(this.backgroundObjects);
 
         // draw wird immer wieder aufrufen, damit die Position des Charakters immer wieder neu gezeichnet wird.
         requestAnimationFrame(() => this.draw());
