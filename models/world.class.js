@@ -16,6 +16,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    camera_x = -100;
 
     constructor(canvas,keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -32,10 +33,13 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.ctx.translate(this.camera_x,0);
         this.addObjecttoMaop(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjecttoMaop(this.enemies);
         this.addObjecttoMaop(this.clouds);
+
+        this.ctx.translate(-this.camera_x,0);
 
         // draw wird immer wieder aufrufen, damit die Position des Charakters immer wieder neu gezeichnet wird.
         requestAnimationFrame(() => this.draw());
