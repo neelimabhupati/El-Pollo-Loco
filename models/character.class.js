@@ -11,6 +11,7 @@ class Character extends MovableObject {
         './images/2_character_pepe/2_walk/W-26.png',
 
     ];
+    world;
 
     constructor() {
         super();
@@ -22,12 +23,16 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let i = this.currentImageIndex % this.IMAGES_WALKING.length;// let i = 0 % 6; => 0, Rest 1
-            let path = this.IMAGES_WALKING[i];
-            this.image = this.imageCache[path];
-            this.currentImageIndex++;
+            if (this.world.keyboard.RIGHT) {
+
+                let i = this.currentImageIndex % this.IMAGES_WALKING.length;// let i = 0 % 6; => 0, Rest 1
+                let path = this.IMAGES_WALKING[i];
+                this.image = this.imageCache[path];
+                this.currentImageIndex++;
+            }
         }, 100); // Move the character every 1/60th of a second
     }
+
     jump() {
 
     }
