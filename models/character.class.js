@@ -18,8 +18,6 @@ class Character extends MovableObject {
         super();
         this.loadImage('./images/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
-
-        this.animate();
     }
 
     animate() {
@@ -41,11 +39,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT|| this.world.keyboard.LEFT){
-                //walk animation
-                let i = this.currentImageIndex % this.IMAGES_WALKING.length;// let i = 0 % 6; => 0, Rest 1
-                let path = this.IMAGES_WALKING[i];
-                this.image = this.imageCache[path];
-                this.currentImageIndex++;
+                this.playAnimation(this.IMAGES_WALKING)
             }
         }, 50); // Move the character every 1/60th of a second
     }

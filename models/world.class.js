@@ -18,6 +18,7 @@ class World {
 
     setWorld(){
         this.character.world = this;
+        this.character.animate();
     }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
