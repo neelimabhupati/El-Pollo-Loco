@@ -13,7 +13,7 @@ class MovableObject {
 
     applyGravity() {
         setInterval(() => {
-            if (this.isAboveGround) {
+             if (this.isAboveGround() || this.speedY < 0) {
                 this.y += this.speedY;
                 this.speedY += this.acceleration;
                 if (this.y >= 180) {
@@ -52,7 +52,7 @@ class MovableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImageIndex % this.IMAGES_WALKING.length;// let i = 0 % 6; => 0, Rest 1
+        let i = this.currentImageIndex % images.length;
         let path = images[i];
         this.image = this.imageCache[path];
         this.currentImageIndex++;
