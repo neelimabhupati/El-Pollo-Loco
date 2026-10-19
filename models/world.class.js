@@ -12,8 +12,9 @@ class World {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.setWorld();
         this.draw();
+        this.setWorld();
+        this.checkCollisions();
     }
 
     setWorld() {
@@ -33,6 +34,16 @@ class World {
 
         // draw wird immer wieder aufrufen, damit die Position des Charakters immer wieder neu gezeichnet wird.
         requestAnimationFrame(() => this.draw());
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Collision with Character ', enemy);
+                }
+            });
+        }, 200);
     }
 
     addObjecttoMaop(Objects) {
