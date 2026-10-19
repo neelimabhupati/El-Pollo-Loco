@@ -13,18 +13,14 @@ class MovableObject {
 
     applyGravity() {
         setInterval(() => {
-             if (this.isAboveGround() || this.speedY < 0) {
-                this.y += this.speedY;
-                this.speedY += this.acceleration;
-                if (this.y >= 180) {
-                    this.y = 180;
-                    this.speedY = 0;
-                }
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
     }
 
-    isAboveGround(){
+    isAboveGround() {
         return this.y < 180;
     }
     loadImage(path) {
@@ -42,13 +38,14 @@ class MovableObject {
 
     moveRight() {
         console.log("Moving right");
+        this.x += this.speed;
+        this.otherDirection = false;
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60); // Move the cloud left every 1/60th of a second 
-
+        this.x -= this.speed;
+        this.otherDirection = true;
+        
     }
 
     playAnimation(images) {
@@ -57,5 +54,10 @@ class MovableObject {
         this.image = this.imageCache[path];
         this.currentImageIndex++;
     }
+
+    jump() {
+        this.speedY = 20;
+    }
+
 
 }
