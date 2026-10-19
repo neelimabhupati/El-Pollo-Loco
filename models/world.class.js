@@ -49,7 +49,6 @@ class World {
             mo.x = mo.x * -1;
         }
         this.ctx.drawImage(mo.image, mo.x, mo.y, mo.width, mo.height);
-        // this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
 
         this.ctx.beginPath();
         this.ctx.lineWidth = '5';
