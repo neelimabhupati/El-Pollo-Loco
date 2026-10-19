@@ -27,7 +27,7 @@ class Character extends MovableObject {
     ];
 
     world;
-    walking_sound = new Audio('./audio/walking.mp3');
+    // walking_sound = new Audio('./audio/walking.mp3');
 
     constructor() {
         super();
@@ -49,7 +49,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                  this.otherDirection = true;
-                this.walking_sound.play();
+                // this.walking_sound.play();
             }
 
             if(this.world.keyboard.SPACE && !this.isAboveGround()){
