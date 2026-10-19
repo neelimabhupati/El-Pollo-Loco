@@ -3,6 +3,7 @@ class Character extends MovableObject {
     width = 140;
     y = 80;
     speed = 10;
+    
     IMAGES_WALKING = [
         './images/2_character_pepe/2_walk/W-21.png',
         './images/2_character_pepe/2_walk/W-22.png',
@@ -26,6 +27,16 @@ class Character extends MovableObject {
 
     ];
 
+    IMAGES_DEAD = [
+        './images/2_character_pepe/5_dead/D-51.png',
+        './images/2_character_pepe/5_dead/D-52.png',
+        './images/2_character_pepe/5_dead/D-53.png',
+        './images/2_character_pepe/5_dead/D-54.png',
+        './images/2_character_pepe/5_dead/D-55.png',
+        './images/2_character_pepe/5_dead/D-56.png',
+        './images/2_character_pepe/5_dead/D-57.png'
+    ];
+
     world;
     // walking_sound = new Audio('./audio/walking.mp3');
 
@@ -34,6 +45,7 @@ class Character extends MovableObject {
         this.loadImage('./images/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
     }
@@ -48,12 +60,12 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
-                 this.otherDirection = true;
+                this.otherDirection = true;
                 // this.walking_sound.play();
             }
 
-            if(this.world.keyboard.SPACE && !this.isAboveGround()){
-               this.jump();
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jump();
             }
 
             this.world.camera_x = -this.x + 100;
@@ -62,15 +74,17 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            
-                if (this.isAboveGround()) {
-                    this.playAnimation(this.IMAGES_JUMPING);
-                } else {
-                    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                        this.playAnimation(this.IMAGES_WALKING)
-                    }
+
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+            } else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_WALKING)
                 }
-            
+            }
+
         }, 50); // Move the character every 1/60th of a second
     }
 
