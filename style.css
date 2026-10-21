@@ -1,26 +1,69 @@
-body{
-    display: flex;
-    
-    flex-direction: column;
-    align-items: center;
-}
-
-canvas{
-    background-color: black;
-}
-
-#start-screen {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
 }
 
-#start-screen img {
-    width: 720px;
-    max-width: 100%;
+h1 {
+    font-size: 64px;
+    letter-spacing: 5px;
+    -webkit-text-stroke: 0.01px #7e431b;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    color: #E98C42;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #canvas {
     display: none;
     background-color: black;
+}
+
+.start-screen-content {
+    position: relative;
+    width: 720px;
+    max-width: 100%;
+}
+
+.start-screen-content img {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 80px;
+}
+
+.start-menu button {
+    width: 159.32px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #FFCC00;
+    font: 42px "Zabras", Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+    text-shadow: 2px 2px 3px #000;
+}
+
+.start-menu button:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #FFCC00;
+}
+
+.start-menu button:focus-visible {
+    outline: 2px solid #FFCC00;
+    outline-offset: 4px;
 }
