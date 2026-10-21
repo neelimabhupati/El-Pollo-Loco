@@ -27,11 +27,17 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-        this.addObjecttoMaop(this.level.backgroundObjects);
+        this.addObjecttoMap(this.level.backgroundObjects);
+
+        this.ctx.translate(-this.camera_x, 0); //back
+
+        //space for fixed object
         this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0); //forward
+
         this.addToMap(this.character);
-        this.addObjecttoMaop(this.level.enemies);
-        this.addObjecttoMaop(this.level.clouds);
+        this.addObjecttoMap(this.level.enemies);
+        this.addObjecttoMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -45,12 +51,15 @@ class World {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     // console.log('Collision with Character, energy ', this.character.energy);
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy)
+                
                 }
             });
         }, 200);
     }
 
-    addObjecttoMaop(Objects) {
+    addObjecttoMap(Objects) {
         Objects.forEach((object) => {
             this.addToMap(object);
         });
