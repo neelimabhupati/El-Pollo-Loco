@@ -11,6 +11,7 @@ class MovableObject {
     speedY = 0;
     acceleration = 1;
     energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -62,7 +63,16 @@ class MovableObject {
         this.energy -= 5;
         if(this.energy < 0){
             this.energy = 0;
+        }else{
+            this.lastHit = new Date().getTime();
         }
+    }
+    
+    isHurt(){
+        let timepassed = new Date().getTime()- this.lastHit; // difference in ms
+        timepassed = timepassed / 1000; // Difference in s
+        console.log(timepassed);
+        return timepassed <1;
     }
 
     isDead(){
@@ -77,8 +87,6 @@ class MovableObject {
 
     moveLeft() {
         this.x -= this.speed;
-
-
     }
 
     playAnimation(images) {
@@ -91,6 +99,5 @@ class MovableObject {
     jump() {
         this.speedY = 20;
     }
-
 
 }
