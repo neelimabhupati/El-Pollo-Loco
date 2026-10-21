@@ -1,11 +1,4 @@
-class MovableObject {
-    x = 120;
-    y = 280;
-    image;
-    height = 150;
-    width = 100;
-    imageCache = {};
-    currentImageIndex = 0;
+class MovableObject extends DrawbleObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -24,18 +17,6 @@ class MovableObject {
 
     isAboveGround() {
         return this.y < 180;
-    }
-    loadImage(path) {
-        this.image = new Image();
-        this.image.src = path;
-    }
-
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let image = new Image();
-            image.src = path;
-            this.imageCache[path] = image;
-        });
     }
 
     draw(ctx) {
@@ -59,28 +40,28 @@ class MovableObject {
             this.y < mo.y + mo.height;
     }
 
-    hit(){
+    hit() {
         this.energy -= 5;
-        if(this.energy < 0){
+        if (this.energy < 0) {
             this.energy = 0;
-        }else{
+        } else {
             this.lastHit = new Date().getTime();
         }
     }
-    
-    isHurt(){
-        let timepassed = new Date().getTime()- this.lastHit; // difference in ms
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000; // Difference in s
-        console.log(timepassed);
-        return timepassed <1;
+        // console.log(timepassed);
+        return timepassed < 1;
     }
 
-    isDead(){
+    isDead() {
         return this.energy == 0;
     }
-    
+
     moveRight() {
-        console.log("Moving right");
+        // console.log("Moving right");
         this.x += this.speed;
 
     }
