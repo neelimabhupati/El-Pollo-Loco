@@ -9,6 +9,7 @@ class World {
     camera_x = 0;
     lifeStatusBar = new LifeStatusBar();
     coinStatusBar = new CoinStatusBar();
+    bottleStatusBar = new BottleStatusBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -36,6 +37,7 @@ class World {
         //space for fixed object
         this.addToMap(this.lifeStatusBar);
         this.addToMap(this.coinStatusBar);
+        this.addToMap(this.bottleStatusBar);
         this.ctx.translate(this.camera_x, 0); //forward
 
         this.addToMap(this.character);
@@ -58,9 +60,8 @@ class World {
         }, 200);
     }
 
-    checkThrowObject(){
-        if(this.keyboard.D)
-        {
+    checkThrowObject() {
+        if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle)
         }
@@ -104,6 +105,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 
 }
