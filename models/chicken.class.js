@@ -2,6 +2,7 @@ class Chicken extends MovableObject {
     y = 360;
     height = 65;
     width = 80;
+    dead = false;
 
     IMAGES_WALKING = [
         './images/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -20,15 +21,21 @@ class Chicken extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            if (!this.dead) {
+                this.moveLeft();
+            }
         }, 1000 / 60); // Move the cloud left every 1/60th of a second 
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
+            if (!this.dead) {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
         }, 200); // Move the character every 1/60th of a second
     }
 
-    jump() {
-
+    die() {
+        this.dead = true;
+        this.speed = 0;
+        this.loadImage('./images/3_enemies_chicken/chicken_normal/2_dead/dead.png');
     }
 }

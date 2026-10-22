@@ -85,9 +85,15 @@ class World {
 
         // Bottles collect chesi unte maatrame throw cheyyali.
         if (this.collectedBottles > 0) {
+            const direction = this.character.otherDirection ? -1 : 1;
+            const bottleX = direction === 1
+                ? this.character.x + this.character.width - 20
+                : this.character.x - 60;
+
             const bottle = new ThrowableObject(
-                this.character.x + 100,
-                this.character.y + 100
+                bottleX,
+                this.character.y + 100,
+                direction
             );
 
             this.throwableObjects.push(bottle);
@@ -97,21 +103,64 @@ class World {
                 (this.collectedBottles / this.totalBottles) * 100;
             this.bottleStatusBar.setPercentage(percentage);
         }
-
-        console.log(
-            'Bottles remaining:', this.collectedBottles,
-            'Bar percentage:', percentage
-        );
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.lifeStatusBar.setPercentage(this.character.energy)
+        for (let i = this.level.enemies.length - 1; i >= 0; i--) {
+            const enemy = this.level.enemies[i];
 
+            if (enemy.dead || !this.character.isColliding(enemy)) {
+                continue;
             }
-        });
+
+            const characterBottom = this.character.y + this.character.height;
+            const isStomping =
+                enemy instanceof Chicken &&
+                this.character.speedY < 0 &&
+                characterBottom < enemy.y + enemy.height / 2;
+
+            if (isStomping) {
+                enemy.die();
+                this.character.jump();
+
+                setTimeout(() => {
+                    const enemyIndex = this.level.enemies.indexOf(enemy);
+                    if (enemyIndex !== -1) {
+                        this.level.enemies.splice(enemyIndex, 1);
+                    }
+                }, 500);
+            } else {
+                this.character.hit();
+                this.lifeStatusBar.setPercentage(this.character.energy);
+            }
+        }
+
+        const endboss = this.level.enemies.find(
+            (enemy) => enemy instanceof Endboss
+        );
+
+        if (endboss && !endboss.defeated) {
+            for (let i = this.throwableObjects.length - 1; i >= 0; i--) {
+                const bottle = this.throwableObjects[i];
+
+                if (bottle.isColliding(endboss)) {
+                    this.throwableObjects.splice(i, 1);
+
+                    if (endboss.hitByBottle()) {
+                        setTimeout(() => {
+                            const bossIndex = this.level.enemies.indexOf(endboss);
+
+                            if (bossIndex !== -1) {
+                                this.level.enemies.splice(bossIndex, 1);
+                            }
+                        }, 700);
+
+                        break;
+                    }
+                }
+            }
+        }
+        
         for (let i = this.level.coins.length - 1; i >= 0; i--) {
             const coin = this.level.coins[i];
 
