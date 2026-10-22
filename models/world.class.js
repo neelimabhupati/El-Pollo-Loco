@@ -9,6 +9,10 @@ class World {
     camera_x = 0;
     lifeStatusBar = new LifeStatusBar();
     coinStatusBar = new CoinStatusBar();
+
+    collectedCoins = 0;
+    totalCoins = this.level.coins.length;
+
     bottleStatusBar = new BottleStatusBar();
     throwableObjects = [];
 
@@ -43,6 +47,7 @@ class World {
         this.addToMap(this.character);
         this.addObjecttoMap(this.level.enemies);
         this.addObjecttoMap(this.level.clouds);
+        this.addObjecttoMap(this.level.coins);
         this.addObjecttoMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
@@ -74,7 +79,17 @@ class World {
                 this.lifeStatusBar.setPercentage(this.character.energy)
 
             }
-        });
+        }); for (let i = this.level.coins.length - 1; i >= 0; i--) {
+            const coin = this.level.coins[i];
+
+            if (this.character.isColliding(coin)) {
+                this.level.coins.splice(i, 1);
+                this.collectedCoins++;
+
+                const percentage = (this.collectedCoins / this.totalCoins) * 100;
+                this.coinStatusBar.setPercentage(percentage);
+            }
+        }
     }
     addObjecttoMap(Objects) {
         Objects.forEach((object) => {
