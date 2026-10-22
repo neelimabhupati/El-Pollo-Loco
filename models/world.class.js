@@ -20,10 +20,14 @@ class World {
     throwableObjects = [];
     throwKeyWasPressed = false;
 
+    gameWon = false;
+    winImage = new Image();
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.winImage.src = './images/You won, you lost/Game over A.png';
         this.draw();
         this.setWorld();
         this.run();
@@ -36,6 +40,21 @@ class World {
     }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        if (this.gameWon) {
+            if (this.winImage.complete && this.winImage.naturalWidth > 0) {
+                this.ctx.drawImage(
+                    this.winImage,
+                    0,
+                    0,
+                    this.canvas.width,
+                    this.canvas.height
+                );
+            }
+
+            requestAnimationFrame(() => this.draw());
+            return;
+        }
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjecttoMap(this.level.backgroundObjects);
@@ -129,6 +148,10 @@ class World {
                         this.level.enemies.splice(enemyIndex, 1);
                     }
                 }, 500);
+
+
+
+
             } else {
                 this.character.hit();
                 this.lifeStatusBar.setPercentage(this.character.energy);
@@ -153,6 +176,7 @@ class World {
                             if (bossIndex !== -1) {
                                 this.level.enemies.splice(bossIndex, 1);
                             }
+                            this.gameWon = true;
                         }, 700);
 
                         break;
@@ -160,7 +184,7 @@ class World {
                 }
             }
         }
-        
+
         for (let i = this.level.coins.length - 1; i >= 0; i--) {
             const coin = this.level.coins[i];
 
