@@ -3,7 +3,7 @@ const level1 = new Level([
     new Chicken(),
     new Chicken(),
     new Endboss()
-    ],
+],
     [
         new Cloud()
     ],
@@ -38,5 +38,14 @@ const level1 = new Level([
             150 + index * 200 + Math.random() * 100,
             190 + Math.random() * 120
         )
+    ),
+
+    Array.from({ length: 5 }, (_, index) =>
+        new Bottle(
+            300 + index * 350 + Math.random() * 100,
+            340
+        )
     )
+
 );
+
