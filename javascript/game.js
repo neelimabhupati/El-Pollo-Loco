@@ -11,7 +11,7 @@ function startGame() {
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
-    console.log("My Character is:", world.character);
+    // console.log("My Character is:", world.character);
 }
 
 window.addEventListener('keydown', (event) => {
@@ -37,7 +37,7 @@ window.addEventListener('keydown', (event) => {
         keyboard.D = true;
     }
 
-    console.log(event);
+    // console.log(event);
 
 });
 
@@ -60,6 +60,6 @@ window.addEventListener('keyup', (event) => {
     if (event.keyCode == 68) {
         keyboard.D = false;
     }
-    console.log(event);
+    // console.log(event);
 
 });

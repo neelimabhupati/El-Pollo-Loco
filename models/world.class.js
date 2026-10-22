@@ -18,6 +18,7 @@ class World {
 
     bottleStatusBar = new BottleStatusBar();
     throwableObjects = [];
+    throwKeyWasPressed = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -70,10 +71,37 @@ class World {
     }
 
     checkThrowObject() {
-        if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
-            this.throwableObjects.push(bottle)
+        if (!this.keyboard.D) {
+            this.throwKeyWasPressed = false;
+            return;
         }
+
+        // D key press-ku okka bottle maatrame throw avuthundi.
+        if (this.throwKeyWasPressed) {
+            return;
+        }
+
+        this.throwKeyWasPressed = true;
+
+        // Bottles collect chesi unte maatrame throw cheyyali.
+        if (this.collectedBottles > 0) {
+            const bottle = new ThrowableObject(
+                this.character.x + 100,
+                this.character.y + 100
+            );
+
+            this.throwableObjects.push(bottle);
+            this.collectedBottles--;
+
+            const percentage =
+                (this.collectedBottles / this.totalBottles) * 100;
+            this.bottleStatusBar.setPercentage(percentage);
+        }
+
+        console.log(
+            'Bottles remaining:', this.collectedBottles,
+            'Bar percentage:', percentage
+        );
     }
 
     checkCollisions() {
