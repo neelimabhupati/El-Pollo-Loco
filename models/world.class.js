@@ -27,7 +27,7 @@ class World {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.winImage.src = './images/You won, you lost/Game over A.png';
+        this.winImage.src = './images/You won, you lost/You Win A.png';
         this.draw();
         this.setWorld();
         this.run();
