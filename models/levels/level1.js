@@ -8,9 +8,6 @@ const level1 = new Level([
     new Jellyfish(1850, 120),
     new Endboss()
 ],
-    [
-        new Cloud()
-    ],
 
     [
         new BackgroundObject(
