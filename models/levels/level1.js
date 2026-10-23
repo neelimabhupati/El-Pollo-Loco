@@ -26,7 +26,7 @@ const level1 = new Level([
             719 * 3
         ),
     ],
-    
+
     Array.from({ length: 10 }, (_, index) =>
         new Coin(
             150 + index * 200 + Math.random() * 100,
@@ -39,7 +39,14 @@ const level1 = new Level([
             300 + index * 350 + Math.random() * 100,
             340
         )
-    )
+    ) .concat(
+            Array.from({ length: 4 }, (_, index) =>
+                new Bottle(
+                    500 + index * 450,
+                    250 + (index % 2) * 80,
+                    './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'
+                )
+            )
+    ));
 
-);
 

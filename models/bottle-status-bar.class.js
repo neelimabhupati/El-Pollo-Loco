@@ -1,5 +1,5 @@
 class BottleStatusBar extends DrawbleObject {
-        IMAGES = [
+    IMAGES = [
         './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/0_ copia 2.png',
         './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/20_ copia 3.png',
         './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/40_ copia 2.png',

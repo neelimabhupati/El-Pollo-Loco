@@ -172,8 +172,10 @@ class World {
                             if (bossIndex !== -1) {
                                 this.level.enemies.splice(bossIndex, 1);
                             }
-                            this.gameWon = true;
-                        }, 700);
+                            setTimeout(() => {
+                                this.gameWon = true;
+                            }, 600);
+                        }, 1500);
 
                         break;
                     }
