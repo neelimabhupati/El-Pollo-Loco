@@ -27,11 +27,10 @@ class World {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.winImage.src = './images/You won, you lost/You Win A.png';
+        this.winImage.src = './images/Grafiken-Sharkie/6.Botones/Tittles/You win/Mesa de trabajo 1.png';
         this.draw();
         this.setWorld();
         this.run();
-
     }
 
     setWorld() {
