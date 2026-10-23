@@ -1,8 +1,8 @@
 class Endboss extends MovableObject {
 
-    height = 400;
+    height = 600;
     width = 250;
-    y = 55;
+    y = -130;
     hits = 0;
     defeated = false;
     hurtUntil = 0;
@@ -70,7 +70,7 @@ class Endboss extends MovableObject {
 
         this.hits++;
         this.hurtUntil = Date.now() + 800;
-        
+
         if (this.hits >= 4) {
             this.defeated = true;
 

@@ -1,13 +1,12 @@
 class CoinStatusBar extends DrawbleObject {
     IMAGES = [
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
-        './images/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/0_  copia 4.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/20_  copia 2.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/40_  copia 4.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/60_  copia 4.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/80_  copia 4.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/Coin/100_ copia 4.png'
     ];
-
 
     percentage = 0;
 
@@ -15,7 +14,7 @@ class CoinStatusBar extends DrawbleObject {
         super();
         this.loadImages(this.IMAGES);
         this.x = 50;
-        this.y = 80; // Health bar kinda
+        this.y = 60; // Health bar kinda
         this.width = 200;
         this.height = 60;
         this.setPercentage(0);

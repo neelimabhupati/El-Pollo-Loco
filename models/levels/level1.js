@@ -44,7 +44,7 @@ const level1 = new Level([
         Array.from({ length: 4 }, (_, index) =>
             new Bottle(
                 500 + index * 450,
-                250 + (index % 2) * 80,
+                50 + (index % 2) * 80,
                 './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'
             )
         )

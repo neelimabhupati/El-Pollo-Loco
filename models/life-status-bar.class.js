@@ -1,13 +1,13 @@
 class LifeStatusBar extends DrawbleObject {
 
     IMAGES = [
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png',
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png',
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png',
-        './images/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png',
-    ];
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/0_  copia 3.png',
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/20_ copia 4.png',
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/40_  copia 3.png',
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/60_  copia 3.png',
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/80_  copia 3.png',
+    './images/Grafiken-Sharkie/4. Marcadores/green/Life/100_  copia 2.png',
+];
 
     percentage = 100;
 
@@ -15,7 +15,7 @@ class LifeStatusBar extends DrawbleObject {
         super();
         this.loadImages(this.IMAGES);
         this.x = 50;
-        this.y = 20;
+        this.y = 30;
         this.width = 200;
         this.height = 60;
         this.setPercentage(100);
