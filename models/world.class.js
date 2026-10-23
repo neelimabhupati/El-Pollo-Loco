@@ -75,7 +75,6 @@ class World {
         this.addObjecttoMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
-
         // draw wird immer wieder aufrufen, damit die Position des Charakters immer wieder neu gezeichnet wird.
         requestAnimationFrame(() => this.draw());
     }
@@ -148,9 +147,6 @@ class World {
                         this.level.enemies.splice(enemyIndex, 1);
                     }
                 }, 500);
-
-
-
 
             } else {
                 this.character.hit();
