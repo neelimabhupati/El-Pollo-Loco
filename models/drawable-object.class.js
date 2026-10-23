@@ -17,13 +17,18 @@ class DrawbleObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
+        // if (this instanceof Character || this instanceof Chicken) {
+        //     const x = this.x + (this.collisionOffsetX ?? 0);
+        //     const y = this.y + (this.collisionOffsetY ?? 0);
+        //     const width = this.collisionWidth ?? this.width;
+        //     const height = this.collisionHeight ?? this.height;
+
+        //     ctx.beginPath();
+        //     ctx.lineWidth = 3;
+        //     ctx.strokeStyle = 'red';
+        //     ctx.rect(x, y, width, height);
+        //     ctx.stroke();
+        // }
     }
 
     loadImages(arr) {

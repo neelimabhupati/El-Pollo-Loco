@@ -16,18 +16,28 @@ class MovableObject extends DrawbleObject {
     }
 
     isAboveGround() {
-        if(this instanceof ThrowableObject){ // Throwable objects should always fall
-            return true; 
+        if (this instanceof ThrowableObject) { // Throwable objects should always fall
+            return true;
         }
         return this.y < 180;
     }
 
     // character.isColliding(chicken);
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+        const thisX = this.x + (this.collisionOffsetX ?? 0);
+        const thisY = this.y + (this.collisionOffsetY ?? 0);
+        const thisWidth = this.collisionWidth ?? this.width;
+        const thisHeight = this.collisionHeight ?? this.height;
+
+        const otherX = mo.x + (mo.collisionOffsetX ?? 0);
+        const otherY = mo.y + (mo.collisionOffsetY ?? 0);
+        const otherWidth = mo.collisionWidth ?? mo.width;
+        const otherHeight = mo.collisionHeight ?? mo.height;
+
+        return thisX < otherX + otherWidth &&
+            thisX + thisWidth > otherX &&
+            thisY < otherY + otherHeight &&
+            thisY + thisHeight > otherY;
     }
 
     hit() {

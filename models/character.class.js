@@ -9,6 +9,12 @@ class Character extends MovableObject {
     world;
     // walking_sound = new Audio('./audio/walking.mp3');
 
+    collisionOffsetX = 45;
+    collisionOffsetY = 115;
+    collisionWidth = 150;
+    collisionHeight = 75;
+
+
     IMAGES_WALKING = [
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/1.png',
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/2.png',
@@ -70,7 +76,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
-    
+
     playBossAttack() {
         this.bossAttackStartedAt = Date.now();
         this.bossAttackActive = true;
