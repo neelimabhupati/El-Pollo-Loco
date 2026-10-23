@@ -103,18 +103,22 @@ class World {
 
         // Bottles collect chesi unte maatrame throw cheyyali.
         if (this.collectedBottles > 0) {
+            this.character.playBossAttack();
             const direction = this.character.otherDirection ? -1 : 1;
             const bottleX = direction === 1
                 ? this.character.x + this.character.width - 20
                 : this.character.x - 60;
+            const bottleY = this.character.y + 120;
 
-            const bottle = new ThrowableObject(
-                bottleX,
-                this.character.y + 120,
-                direction
-            );
+            setTimeout(() => {
+                const bubble = new ThrowableObject(
+                    bottleX,
+                    bottleY,
+                    direction
+                );
+                this.throwableObjects.push(bubble);
+            }, 700);
 
-            this.throwableObjects.push(bottle);
             this.collectedBottles--;
 
             const percentage =
@@ -159,6 +163,7 @@ class World {
         );
 
         if (endboss && !endboss.defeated) {
+
             for (let i = this.throwableObjects.length - 1; i >= 0; i--) {
                 const bottle = this.throwableObjects[i];
 

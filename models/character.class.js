@@ -4,6 +4,11 @@ class Character extends MovableObject {
     y = 80;
     speed = 3;
 
+    bossAttackStartedAt = 0;
+    bossAttackActive = false;
+    world;
+    // walking_sound = new Audio('./audio/walking.mp3');
+
     IMAGES_WALKING = [
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/1.png',
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/2.png',
@@ -45,21 +50,39 @@ class Character extends MovableObject {
         './images/Grafiken-Sharkie/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ];
 
-    world;
-    // walking_sound = new Audio('./audio/walking.mp3');
+    IMAGES_BOSS_ATTACK = [
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+        './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png'
+    ];
 
     constructor() {
         super();
         this.loadImage('./images/Grafiken-Sharkie/1.Sharkie/3.Swim/1.png'); this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_BOSS_ATTACK);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
+    }
+    
+    playBossAttack() {
+        this.bossAttackStartedAt = Date.now();
+        this.bossAttackActive = true;
     }
 
     animate() {
 
         setInterval(() => {
+            if (this.bossAttackActive) {
+                return;
+            }
+
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
@@ -91,6 +114,20 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+
+            } else if (this.bossAttackActive) {
+
+                const frameIndex = Math.floor(
+                    (Date.now() - this.bossAttackStartedAt) / 100
+                );
+
+                if (frameIndex >= this.IMAGES_BOSS_ATTACK.length) {
+                    this.bossAttackActive = false;
+                } else {
+                    const imagePath = this.IMAGES_BOSS_ATTACK[frameIndex];
+                    this.image = this.imageCache[imagePath];
+                }
+
             } else if (
                 this.world.keyboard.RIGHT ||
                 this.world.keyboard.LEFT ||
@@ -99,7 +136,7 @@ class Character extends MovableObject {
             ) {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 50); 
+        }, 50);
     }
 
 }

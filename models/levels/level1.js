@@ -1,9 +1,9 @@
 const level1 = new Level([
     new Chicken(450),
-    new Chicken(1100),
-    new Chicken(1750),
-    new Jellyfish(800, 140),
-    new Jellyfish(1450, 250),
+    // new Chicken(1100),
+    // new Chicken(1750),
+    // new Jellyfish(800, 140),
+    // new Jellyfish(1450, 250),
     new Jellyfish(1100, 300),
     new Jellyfish(1850, 120),
     new Endboss()
