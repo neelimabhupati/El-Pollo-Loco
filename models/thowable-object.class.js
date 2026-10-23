@@ -17,13 +17,13 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.speedY = 18;
-        this.applyGravity();
+        // this.speedY = 18;
+        // // this.applyGravity();
 
         setInterval(() => {
-            this.x += 20 * this.direction;
-            this.playAnimation(this.IMAGES_ROTATION);
-        }, 100);
+            this.x += 6 * this.direction;
+            // this.playAnimation(this.IMAGES_ROTATION);
+        }, 1000/ 60);
     }
 }
 

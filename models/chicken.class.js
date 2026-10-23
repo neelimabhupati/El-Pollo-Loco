@@ -12,11 +12,11 @@ class Chicken extends MovableObject {
         './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ];
 
-    constructor() {
+    constructor(x = 200 + Math.random() * 500) {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 200 + Math.random() * 500; // Random x position for each chicken
+        this.x = x;
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
     }

@@ -1,7 +1,11 @@
 const level1 = new Level([
-    new Chicken(),
-    new Chicken(),
-    new Chicken(),
+    new Chicken(450),
+    new Chicken(1100),
+    new Chicken(1750),
+    new Jellyfish(800, 140),
+    new Jellyfish(1450, 250),
+    new Jellyfish(1100, 300),
+    new Jellyfish(1850, 120),
     new Endboss()
 ],
     [
@@ -39,14 +43,14 @@ const level1 = new Level([
             300 + index * 350 + Math.random() * 100,
             340
         )
-    ) .concat(
-            Array.from({ length: 4 }, (_, index) =>
-                new Bottle(
-                    500 + index * 450,
-                    250 + (index % 2) * 80,
-                    './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'
-                )
+    ).concat(
+        Array.from({ length: 4 }, (_, index) =>
+            new Bottle(
+                500 + index * 450,
+                250 + (index % 2) * 80,
+                './images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'
             )
+        )
     ));
 
 

@@ -110,7 +110,7 @@ class World {
 
             const bottle = new ThrowableObject(
                 bottleX,
-                this.character.y + 100,
+                this.character.y + 120,
                 direction
             );
 
