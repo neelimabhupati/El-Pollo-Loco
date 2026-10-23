@@ -15,6 +15,9 @@ class Character extends MovableObject {
     collisionHeight = 75;
 
 
+    deadAnimationStartedAt = 0;
+    deadAnimationFinished = false;
+
     IMAGES_WALKING = [
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/1.png',
         './images/Grafiken-Sharkie/1.Sharkie/3.Swim/2.png',
@@ -34,18 +37,16 @@ class Character extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/1.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/2.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/3.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/4.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/5.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/6.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/7.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/8.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/9.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/10.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/11.png',
-        './images/Grafiken-Sharkie/1.Sharkie/6.dead/1.Poisoned/12.png'
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/1.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/2.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/3.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/4.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/5.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/6.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/7.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/8.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/9.png',
+        './images/Grafiken-Sharkie/1.Sharkie/6.dead/2.Electro_shock/10.png'
     ];
 
     IMAGES_HURT = [
@@ -117,7 +118,24 @@ class Character extends MovableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
+                if (this.deadAnimationFinished) return;
+
+                if (!this.deadAnimationStartedAt) {
+                    this.deadAnimationStartedAt = Date.now();
+                }
+
+                const frameIndex = Math.floor(
+                    (Date.now() - this.deadAnimationStartedAt) / 150
+                );
+
+                if (frameIndex < this.IMAGES_DEAD.length) {
+                    const imagePath = this.IMAGES_DEAD[frameIndex];
+                    this.image = this.imageCache[imagePath];
+                } else {
+                    this.deadAnimationFinished = true;
+                }
+
+                return;
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
 
@@ -134,12 +152,7 @@ class Character extends MovableObject {
                     this.image = this.imageCache[imagePath];
                 }
 
-            } else if (
-                this.world.keyboard.RIGHT ||
-                this.world.keyboard.LEFT ||
-                this.world.keyboard.UP ||
-                this.world.keyboard.DOWN
-            ) {
+            } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);

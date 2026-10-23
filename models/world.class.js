@@ -22,12 +22,15 @@ class World {
 
     gameWon = false;
     winImage = new Image();
+    gameLost = false;
+    loseImage = new Image();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.winImage.src = './images/Grafiken-Sharkie/6.Botones/Tittles/You win/Mesa de trabajo 1.png';
+        this.loseImage.src = './images/Grafiken-Sharkie/6.Botones/Tittles/Game Over/Recurso 9.png';
         this.draw();
         this.setWorld();
         this.run();
@@ -40,10 +43,12 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        if (this.gameWon) {
-            if (this.winImage.complete && this.winImage.naturalWidth > 0) {
+        if (this.gameWon || this.gameLost) {
+            const resultImage = this.gameWon ? this.winImage : this.loseImage;
+
+            if (resultImage.complete && resultImage.naturalWidth > 0) {
                 this.ctx.drawImage(
-                    this.winImage,
+                    resultImage,
                     0,
                     0,
                     this.canvas.width,
@@ -82,6 +87,12 @@ class World {
 
             // check collisions
             this.checkCollisions();
+            if (this.character.isDead()) {
+                if (this.character.deadAnimationFinished) {
+                    this.gameLost = true;
+                }
+                return;
+            }
             this.checkThrowObject();
         }, 200);
     }
