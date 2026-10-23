@@ -5,14 +5,16 @@ class Chicken extends MovableObject {
     dead = false;
 
     IMAGES_WALKING = [
-        './images/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        './images/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        './images/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+        './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
+        './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
+        './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim3.png',
+        './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
+        './images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png'
     ];
 
     constructor() {
         super();
-        this.loadImage('./images/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.x = 200 + Math.random() * 500; // Random x position for each chicken
         this.speed = 0.15 + Math.random() * 0.25;
@@ -36,6 +38,6 @@ class Chicken extends MovableObject {
     die() {
         this.dead = true;
         this.speed = 0;
-        this.loadImage('./images/3_enemies_chicken/chicken_normal/2_dead/dead.png');
+        this.loadImage('./images/Grafiken-Sharkie/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png');
     }
 }

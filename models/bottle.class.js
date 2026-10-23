@@ -1,7 +1,7 @@
 class Bottle extends DrawbleObject {
     constructor(x, y) {
         super();
-        this.loadImage('./images/6_salsa_bottle/1_salsa_bottle_on_ground.png');
+        this.loadImage('./images/Grafiken-Sharkie/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
         this.x = x;
         this.y = y;
         this.width = 60;

@@ -2,7 +2,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
+
+     background-color: #04b8d4;
+    background-image: url("./images/Grafiken-Sharkie/3. Background/background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -19,19 +29,24 @@ h1 {
 
 #canvas {
     display: none;
+    width: min(90vw, 1080px);
+    height: auto;
     background-color: black;
+    border-radius: 30px;
 }
 
 .start-screen-content {
     position: relative;
-    width: 720px;
+    width: min(90vw, 1080px);
     max-width: 100%;
 }
 
 .start-screen-content img {
     display: block;
     width: 100%;
-    border-radius: 20px;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 30px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }

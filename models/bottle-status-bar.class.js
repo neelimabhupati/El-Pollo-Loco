@@ -1,11 +1,11 @@
 class BottleStatusBar extends DrawbleObject {
-    IMAGES = [
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/40.png',
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
-        './images/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
+        IMAGES = [
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/0_ copia 2.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/20_ copia 3.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/40_ copia 2.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/60_ copia 2.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/80_ copia 2.png',
+        './images/Grafiken-Sharkie/4. Marcadores/green/poisoned bubbles/100_ copia 3.png'
     ];
 
     percentage = 0;
